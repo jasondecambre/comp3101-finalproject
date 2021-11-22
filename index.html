@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Process Scheduling Simulator</title>
+ <link rel="stylesheet" href="styles.css">
+ <script src="index.js"></script>
+</head>
+<body>
+<div class="container">
+ <header>
+ <h1>Process Scheduling Simulator</h1>
+ </header>
+ <main>
+    <div id = "form">
+        <h3>Add a new process:</h3>
+    <form>
+        <label length="length">Length:</label>
+        <input type="text" id = "length">
+        <label length="priority">Priority:</label>    
+        <input type="text" id = "pr">
+        <input type="submit" value="Submit" id = "submit">
+      </form> 
+    </div>
+<div id = "fcfs">
+    <!-- first come first serve -->
+    <h3>First Come First Serve</h3>
+    <button id="dfcfs">Dequeue</button>
+    <div class = "queues">
+        <div class = "finished">
+            <h5>Finished</h5>
+            <div class = "fbox">
+            </div>
+        </div>
+        <div class = "working">
+            <h5>Working</h5>
+            <div class = "wbox">                
+            </div>
+        </div>
+    </div>
+</div>
+<div id = "sjn">
+    <!-- shortest job next -->
+    <h3>Shortest Job Next</h3>
+    <button id="dsjn">Dequeue</button>
+    <div class = "queues">
+        <div class = "finished">
+            <h5>Finished</h5>
+            <div class = "fbox">
+            </div>
+          
+        </div>
+        <div class = "working">
+            <h5>Working</h5>
+            <div class = "wbox">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id = "priority">
+    <!-- priority scheduling -->
+    <h3>Priority Scheduling</h3>
+    <button id="dps">Dequeue</button>
+    <div class = "queues">
+        <div class = "finished">
+            <h5>Finished</h5>
+            <div class = "fbox">
+            </div>
+        </div>
+        <div class = "working">
+            <h5>Working</h5>
+            <div class = "wbox">
+            </div>
+        </div>
+    </div>
+</div>
+<div id = "rr">
+    <!-- round robin -->
+    <h3>Round Robin</h3>
+    <button id="drr">Dequeue</button>
+    <div class = "queues">
+        <div class = "finished">
+            <h5>Finished</h5>
+            <div class = "fbox">
+            </div>
+        </div>
+        <div class = "working">
+            <h5>Working</h5>
+            <div class = "wbox">
+            </div>
+        </div>
+    </div>
+</div>
+ </main>
+
+ <footer>
+ </footer>
+</div>
+</body>
+</html>
