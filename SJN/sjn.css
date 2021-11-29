@@ -1,0 +1,80 @@
+html{
+    background-color: #f7f7f7;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 20px;  
+   
+}
+
+body{
+    text-align : center;
+}
+
+h1{
+    text-align: center;
+}
+
+form{
+    display: inline-block;
+    
+}
+
+
+input{
+    margin-left:5px;
+    padding:10px 9px;
+   
+}
+
+button{
+    display: inline-block;
+    padding: 10px 15px;
+    font-size : 18px;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: palevioletred;
+    border:none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+
+}
+
+button:active{
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.fctable{
+    justify-content: center;
+    margin-top:30px;
+    display:flex;
+}
+
+.fctable table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+}
+
+thead,th,tr,td{
+    padding: 10px;
+    border: 1px solid black;
+	text-align: center;
+
+}
+
+.sjnreadyqueue{
+    list-style-type: none;
+}
+
+.sjnreadyqueue li{
+    display:inline;
+    padding:10px;
+}
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="sjn.css" type="text/css">
+        <h1>Shortest Job Next </h1>
+        <script src="sjn.js"></script>
+    </head>
+    <body>
+        <div id="sjn">
+            <form>
+                <label for="busttime">Burst Time (min=1,max=15):</label>
+                <input type="number" id="sjnbursttime" name="bursttime" min=1 max=15>
+                <button id="sjncreateprocess">  Create Process </button>
+                
+            </form>
+
+
+
+            
+
+            <div id="animationsjn">
+                <h2 id='sjnclock'> Clock: 0</h2>
+                <h3> Order executed:</h>
+                <table id="sjntable">
+                </table>
+                <h3>Order Arrived: </h3>
+                <ul id="sjnlist" class="sjnreadyqueue"></ul>
+    
+            </div>
+
+            <div class="sjnbuttonarea">
+                <button id="sjnstart">  Start </button>
+                <button id="sjnreset">  Reset </button>
+
+
+            </div>
+
+            <div class="fctable">
+                <table id="firstptable">
+                    <thead>
+                        <th>Process Name</th>
+                        <th>Burst Time</th>  
+                    </thead>
+                </table>
+            </div>
+        
+        </div>
+
+        
+        
+
+    
+        
+    </body>
+</html>
+
+
+
+
+
