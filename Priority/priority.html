@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Process Scheduling Simulator</title>
+ <link rel="stylesheet" href="styles.css">
+ <script src="anime.min.js"></script>
+ <script src="index.js"></script>
+</head>
+<body>
+<div class="container">
+ <header>
+ <h1>Priority Scheduling Simulator</h1>
+ </header>
+ <main>
+    <div id = "form">
+        <h3>Add a new process:</h3>
+    <form>
+        <label length="length">Length:</label>
+        <select id="length">
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		</select>
+        <label length="priority">Priority:</label>    
+		<select id="pr">
+		  <option value="low">low</option>
+		  <option value="medium">medium</option>
+		  <option value="high">high</option>
+		</select>
+        <input type="submit" value="Submit" id = "submit">
+      </form> 
+    </div>
+	<div id="key"><h4>Priority Key</h4>
+		<div class="low">low</div>
+		<div class="mp">medium</div>
+		<div class="high">high</div>
+	</div>
+<div id = "priority">
+    <!-- priority scheduling -->
+    <h3>Priority Scheduling</h3>
+    <div class = "queues">
+        <div class = "finished">
+            <h5>Finished</h5>
+            <div class = "fbox">
+            </div>
+        </div>
+		<div class = "executing">
+            <h5>Executing</h5>
+            <div class = "ebox">
+            </div>
+        </div>
+        <div class = "working">
+            <h5>Queue</h5>
+            <div class = "wbox">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="controls">
+			<button id ='play' class ="play">Play</button>
+			<button id='pause' class ="pause">Pause</button>
+			<p id="timer">Timer: 0
+</div>
+<h5>Outline</h5>
+<table id='outline'>
+<tr>
+	<th>Process</th>
+	<th>Length</th>
+	<th>Arrival Time</th>
+	<th>Completion Time</th>
+	<th>Wait Time</th>
+	<th>Priority</th>
+<tr>
+</table>
+ </main>
+
+ <footer>
+ </footer>
+</div>
+</body>
+</html> 

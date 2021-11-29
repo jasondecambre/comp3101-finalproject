@@ -1,0 +1,122 @@
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.queues{
+    /* holds both finished and working queues */
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+}
+/*main{
+    /* sets up 2x2 grid for the 4 algorithm visualizations */
+    /*display: grid;
+    grid-template-columns: 500px 500px;
+    grid-template-rows: 300px 300px;
+    grid-gap: 50px;
+}*/
+.fbox{
+    /* box to hold finished processes */
+    border: 2px solid black;
+    width: 550px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.ebox{
+    /* box to hold processes waiting to be worked on */
+    border-top: 2px solid black;
+	border-bottom: 2px solid black;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.wbox{
+    /* box to hold processes waiting to be worked on */
+    border: 2px solid black;
+	border-right:none;
+    width: 600px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* positioning each algorithm */
+#fcfs{
+    grid-column: 1;
+    grid-row: 1;
+}
+#sjn{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#priority{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#rr{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.high, .mp,.low,.long,.ms,.short{
+    /* styling for each process and the number showing when each arrived */
+    width: 50px; 
+    margin: 2px;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	#position: absolute;
+}
+.high{
+    /* high priority process */
+    background-color: red;
+}
+
+.mp{
+    /* medium priority process */
+    background-color: yellow;
+}
+
+.low{
+    /* low priority process */
+    background-color: green;
+}
+
+.long{
+    /* a big, long or resource-heavy process */
+    height: 50px;
+}
+
+.ms{
+    /* a medium-weight process */
+    height: 30px;
+    margin-top: 20px;
+}
+
+.short{
+    /* a lightweight process */
+    height: 15px;
+    margin-top: 35px;
+}
+
+table,th,td{
+	border:1px solid black;
+}
+th{
+	padding:5px;
+}
+td{
+	text-align:center;
+}
+
+#key > div{
+	width:60px;
+	padding:5px;
+	margin:5px;
+}
