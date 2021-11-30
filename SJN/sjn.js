@@ -181,10 +181,11 @@ function createProcess(){
     pname="Process"+ " " + numprocesses;
     //console.log(btime.value);
     p=new SJNProcess(pname,bursttime.value,color,tablerows);
-    addProcesstosjnTable(p);
-    tablerows++;
     //add to queue
     sjnreadyqueuejs.push(p);
+    addProcesstosjnTable(p);
+    tablerows++;
+   
     var entry = document.createElement('li');
     entry.appendChild(document.createTextNode(pname));
     sjnqueuehtml.appendChild(entry);
