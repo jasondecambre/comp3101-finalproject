@@ -1,9 +1,10 @@
 class FCFSProcess{
     //might possibly need an arrival time indicator
-    constructor(processname,bursttime,color,waittime,tablerow){
+    constructor(processname,bursttime,color,arrivetime,tablerow){
+       // p=new FCFSProcess(pname,bursttime.value,color,time,tablerows);
     this.processname = processname;
     this.bursttime = bursttime * 1000;
-    this.waittime = waittime
+    this.arrivetime = arrivetime;
     this.color = color;
     this.textcol = "white";
     this.executeTime = bursttime
@@ -32,6 +33,10 @@ class FCFSProcess{
         return this.tablerow;
     }
 
+    getArrivalTime(){
+        return this.arrivetime;
+    }
+
  
 }
 
@@ -43,7 +48,8 @@ var time;
 var numprocesses;
 var fcfsclockinterval;
 var stop=false;
-var tablerows = 1;
+var tablerows = 0;
+var p;
 
 
 document.addEventListener("DOMContentLoaded",function(){
@@ -85,7 +91,7 @@ function resetAnimation(){
     stop=true;
     numprocesses=0;
     time=0;
-    tablerows = 1;
+    tablerows = 0;
     var fcfstime=document.getElementById('fcfsclock');
     fcfstime.innerHTML="Clock: " + 0;
     var bursttime=document.getElementById("fcfsbursttime");
@@ -114,14 +120,15 @@ function sleep(ms) {
 function addProcesstoFCFSTable(process){
     var cnt = 0;
     var qtable = document.getElementById("firstptable");
-    var prow = qtable.insertRow(process.getTableRow());
-    var completiontime = time + (process.getBurstTime() / 1000);
-    var waittime = completiontime - (process.getBurstTime() / 1000) - time;
-    var arr = [process.getProcessName(),process.getBurstTime() / 1000,time];
+    var rowcount = qtable.rows.length;
+    var prow = qtable.insertRow(rowcount);
+    //var completiontime = time + (process.getBurstTime() / 1000);
+    var waittime = time - process.getArrivalTime() - (process.getBurstTime() / 1000);
+    var arr = [process.getProcessName(),process.getBurstTime() / 1000,process.getArrivalTime(),time,waittime];
     
    
 
-    for(let i=0;i<3;i++){
+    for(let i=0;i<5;i++){
 		var cellp = prow.insertCell(i);
 		cellp.innerHTML=arr[i];
 	}
@@ -168,12 +175,15 @@ async function startAnimation(){
         console.log(removedbursttime);
         //updateClock();
         await sleep(removedbursttime);
+        addProcesstoFCFSTable(removed);
+        
         //fcfsqueuehtml.childNodes[count].style.textDecoration="line-through";
         
        
     }
 
     stopAnimation();
+    
 }
 
 
@@ -183,14 +193,15 @@ function createProcess(){
     numprocesses = numprocesses+1;
     pname="Process"+ " " + numprocesses;
     //console.log(btime.value);
-    p=new FCFSProcess(pname,bursttime.value,color,tablerows);
-    addProcesstoFCFSTable(p);
+    p=new FCFSProcess(pname,bursttime.value,color,time,tablerows);
+    //addProcesstoFCFSTable(p);
     tablerows++;
     //add to queue
     fcfsreadyqueuejs.push(p);
     var entry = document.createElement('li');
     entry.appendChild(document.createTextNode(pname));
     fcfsqueuehtml.appendChild(entry);
+    //addProcesstoFCFSTable(p);
     //console.log(fcfsreadyqueuejs);
     //console.log(fcfsqueuehtml);
     
