@@ -13,7 +13,6 @@ class FCFSProcess{
     }
 
 
-
     getProcessName(){
         return this.processname;
     }
@@ -33,10 +32,7 @@ class FCFSProcess{
         return this.tablerow;
     }
 
-
-
-    
-    
+ 
 }
 
 const fcfsreadyqueuejs=[];
@@ -48,6 +44,7 @@ var numprocesses;
 var fcfsclockinterval;
 var stop=false;
 var tablerows = 1;
+
 
 document.addEventListener("DOMContentLoaded",function(){
     initpage();
@@ -122,16 +119,7 @@ function addProcesstoFCFSTable(process){
     var waittime = completiontime - (process.getBurstTime() / 1000) - time;
     var arr = [process.getProcessName(),process.getBurstTime() / 1000,time];
     
-    // var bursttimeque = []
-    // console.log(fcfsreadyqueuejs[1]);
-    // console.log(fcfsreadyqueuejs[1]);
-
-    // for (i=0;i<fcfsreadyqueuejs.length;i++){
-    //     bursttimeque.push(this.constructor.bursttime);
-
-    // }
-
-    // console.log(bursttimeque.toString());
+   
 
     for(let i=0;i<3;i++){
 		var cellp = prow.insertCell(i);
