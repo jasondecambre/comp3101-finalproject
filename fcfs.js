@@ -8,8 +8,11 @@ class FCFSProcess{
     this.textcol = "white";
     this.executeTime = bursttime
     this.tablerow = tablerow;
+    //this.arrivaltime 
 
     }
+
+
 
     getProcessName(){
         return this.processname;
@@ -112,11 +115,25 @@ function sleep(ms) {
 }
 
 function addProcesstoFCFSTable(process){
+    var cnt = 0;
     var qtable = document.getElementById("firstptable");
     var prow = qtable.insertRow(process.getTableRow());
-    var arr = [process.getProcessName(),process.getBurstTime() / 1000];
+    var completiontime = time + (process.getBurstTime() / 1000);
+    var waittime = completiontime - (process.getBurstTime() / 1000) - time;
+    var arr = [process.getProcessName(),process.getBurstTime() / 1000,time];
+    
+    // var bursttimeque = []
+    // console.log(fcfsreadyqueuejs[1]);
+    // console.log(fcfsreadyqueuejs[1]);
 
-    for(let i=0;i<2;i++){
+    // for (i=0;i<fcfsreadyqueuejs.length;i++){
+    //     bursttimeque.push(this.constructor.bursttime);
+
+    // }
+
+    // console.log(bursttimeque.toString());
+
+    for(let i=0;i<3;i++){
 		var cellp = prow.insertCell(i);
 		cellp.innerHTML=arr[i];
 	}
@@ -186,7 +203,7 @@ function createProcess(){
     var entry = document.createElement('li');
     entry.appendChild(document.createTextNode(pname));
     fcfsqueuehtml.appendChild(entry);
-    console.log(fcfsreadyqueuejs);
+    //console.log(fcfsreadyqueuejs);
     //console.log(fcfsqueuehtml);
     
 }
