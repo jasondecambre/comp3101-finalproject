@@ -1,18 +1,33 @@
 class SJNProcess{
     //might possibly need an arrival time indicator
-    constructor(processname,bursttime,color,waittime,tablerow){
+    constructor(processname,bursttime,color,tablerow){
+        console.log("constructor");
     this.processname = processname;
     this.bursttime = bursttime * 1000;
-    this.waittime = waittime
+    this.arrivaltime = time;
     this.color = color;
     this.textcol = "white";
-    this.executeTime = bursttime
+    this.executeTime = bursttime;
     this.tablerow = tablerow;
+    this.completiontime = 0;
+    this.waittime = 0;
 
     }
 
     getProcessName(){
         return this.processname;
+    }
+    getWaitTime(){
+        return this.waittime;
+    }
+    getCompletionTime(){
+        return this.completiontime;
+    }
+
+    getArrivalTime(){
+        if(this.arrivaltime != null)
+            return 0;
+        else return this.arrivaltime;
     }
 
     getBurstTime(){
@@ -62,7 +77,7 @@ function initpage(){
 
     sjnstartbutton.addEventListener("click",function(event){
         if(sjnreadyqueuejs.length != 0){
-            sjnreadyqueuejs.sort((a, b) => (a.bursttime > b.bursttime) ? 1 : -1);
+            sjnreadyqueuejs.sort((a, b) => (a.bursttime > b.bursttime) ? 1 : -1); // sorts for SJN
             startAnimation();
         }
 
@@ -78,6 +93,7 @@ function initpage(){
 
     sjncreatebutton.addEventListener("click",function(e){
         e.preventDefault();
+        stop = false;
         createProcess();
     });
 }
@@ -115,10 +131,17 @@ function sleep(ms) {
 
 function addProcesstosjnTable(process){
     var qtable = document.getElementById("firstptable");
-    var prow = qtable.insertRow(process.getTableRow());
-    var arr = [process.getProcessName(),process.getBurstTime() / 1000];
+    var prow = qtable.insertRow();
+    process.completiontime = time+process.getBurstTime()/1000;
+    process.waittime = process.completiontime - process.getBurstTime()/1000 - process.arrivaltime;
+    console.log("COMP BURST ARRIVE");
+    console.log(process.completiontime);
+    console.log(process.bursttime);
+    console.log(process.arrivaltime);
+    console.log(process.waittime);
+    var arr = [process.getProcessName(), process.arrivaltime, process.getBurstTime()/1000, process.completiontime,process.waittime];
 
-    for(let i=0;i<2;i++){
+    for(let i=0;i<5;i++){
 		var cellp = prow.insertCell(i);
 		cellp.innerHTML=arr[i];
 	}
@@ -148,9 +171,15 @@ async function startAnimation(){
     //console.log(sjnreadyqueuejs);
     var count = 0;
 
-    while(sjnreadyqueuejs.length>0 || stop==true) {
+    while(sjnreadyqueuejs.length>0) {
         //sjnqueuehtml.childNodes[count].style.textDecoration="line-through";
         var removed=sjnreadyqueuejs.shift();
+        console.log("TIME IS___________ ");
+        console.log(time);
+        removed.completiontime = Math.round((time + removed.getBurstTime())/1000);
+        console.log("COMPLETION TIME IS___________ ");
+        console.log(removed.completiontime);
+        addProcesstosjnTable(removed);
         count++;
         //sjnqueuehtml.removeChild(sjnqueuehtml.childNodes[0]);
         var cellt=sjnrow.insertCell(-1);
@@ -162,9 +191,11 @@ async function startAnimation(){
         cellt.width=200+"px";
         console.log(removed.getProcessName());
         var removedbursttime = removed.getBurstTime();
+        
         console.log(removedbursttime);
         //updateClock();
         await sleep(removedbursttime);
+       
         //sjnqueuehtml.childNodes[count].style.textDecoration="line-through";
         
        
@@ -180,18 +211,15 @@ function createProcess(){
     numprocesses = numprocesses+1;
     pname="Process"+ " " + numprocesses;
     //console.log(btime.value);
-    p=new SJNProcess(pname,bursttime.value,color,tablerows);
-    //add to queue
-    sjnreadyqueuejs.push(p);
-    addProcesstosjnTable(p);
-    tablerows++;
    
+    p=new SJNProcess(pname,bursttime.value,color,tablerows,time);
+    //add to queue
+    sjnreadyqueuejs.push(p);  
+    tablerows++;
     var entry = document.createElement('li');
     entry.appendChild(document.createTextNode(pname));
     sjnqueuehtml.appendChild(entry);
-    console.log(sjnreadyqueuejs);
-    //console.log(sjnqueuehtml);
-    
+    console.log(sjnreadyqueuejs);    
 }
 
 
